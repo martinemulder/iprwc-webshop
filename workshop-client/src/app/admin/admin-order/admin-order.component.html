@@ -1,0 +1,14 @@
+<table>
+    <tr>
+        <th>Order nummer</th>
+        <th>Product</th>
+        <th>Hoeveelheid</th>
+    </tr>
+    <tr *ngFor="let order of orders">
+        <td>{{order.orderNr}}</td>
+        <td>{{order.productId}}</td>
+        <td>{{getProduct(order.productId)?.title}}</td>
+        <td>{{order.quantity}}</td>
+    </tr>
+</table>
+

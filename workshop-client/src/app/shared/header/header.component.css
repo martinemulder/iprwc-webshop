@@ -1,0 +1,79 @@
+header {
+    padding: 15px;
+    background: #252525;
+    background: #b8566d;
+    box-shadow: 0 3px 15px -3px rgba(0,0,0,.1);
+    height: 100px;
+}
+
+#logo, #logo img {
+    height: 100%;
+    width: auto;
+}
+
+#logo {
+    padding: 6px;
+}
+
+#logo h1 {
+    padding: 0;
+}
+
+#shopping-cart-button {
+    width: 60px;
+    margin-left: 40px;
+    position: relative;
+}
+
+#menu-wrap {
+    float: right;
+    height: 100%;
+}
+
+#logo, #user-menu, #main-menu {
+    float: left;
+    height: 100%;
+}
+
+#user-menu div, #main-menu {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    height: 100%;
+}
+
+.welcome {
+    /*margin-right: 10px;*/
+}
+
+header button {
+    margin-left: 20px;
+}
+
+#logout-button, #login-button {
+    background: #3a1c40;
+    color: white!important;
+}
+
+#profiel-button {
+    background: none;
+    color: #adebf8;
+    box-shadow: none;
+    padding: 0;
+}
+
+#profiel-button i {
+    font-size: 40px;
+}
+
+#profiel-button i:hover {
+    color: #ffd740;
+}
+
+#shop-count {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+}
+

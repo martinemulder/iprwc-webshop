@@ -1,0 +1,17 @@
+#admin-menu {
+    float: right;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+tr {
+    height: 25px;
+}
+
+#admin-menu button {
+    font-size: 1em;
+    padding: 0 16px;
+    line-height: 36px;
+    margin-left: 15px;
+}

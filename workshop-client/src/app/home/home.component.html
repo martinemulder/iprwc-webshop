@@ -1,0 +1,32 @@
+<div class="content">
+    <h1>Producten</h1>
+
+    <ul>
+        <li class="product" *ngFor="let product of products">
+            <div class="product-image tooltip">
+                <img src="'../../assets/images/products/{{ product.artist.replace(' ','-') | lowercase }}-{{ product.title.split(' ').join('-') | lowercase }}.jpg" />
+                 <span>
+                    <a>
+                        <button class="add-to-cart" mat-raised-button="accent" (click)="addToBasket(product)">
+                            <i class="material-icons">shopping_cart</i>
+                        </button>
+                    </a>
+                </span>
+            </div>
+            <div class="product-description">
+                {{ product.artist }} -
+                {{ product.title }}<br />
+                <span class="price">€{{ product.price }}</span><br />
+                <span class="year">{{ product.year }}</span>
+            </div>
+
+        </li>
+    </ul>
+
+</div>
+
+<!--<div *ngIf="!authenticated">-->
+    <!--<b>Meer lorem ipsum? Log snel in!</b>-->
+    <!--<user-login-form></user-login-form>-->
+<!--</div>-->
+

@@ -1,0 +1,76 @@
+<div class="content">
+    <h1>Producten</h1>
+
+    <div class="order-list mat-elevation-z8" *ngIf="hasData()">
+
+        <mat-table #table [dataSource]="dataSource">
+
+            <ng-container id="barcode" matColumnDef="barcode">
+                <mat-header-cell *matHeaderCellDef>Barcode</mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <input [value]="element.barcode" (blur)="editProduct(element)"
+                           name="barcode" [(ngModel)]="element.barcode" />
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="artist">
+                <mat-header-cell *matHeaderCellDef>Artiest</mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <input [value]="element.artist" (blur)="editProduct(element)"
+                           name="artist" [(ngModel)]="element.artist"/>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="title">
+                <mat-header-cell *matHeaderCellDef>Titel</mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <input [value]="element.title" (blur)="editProduct(element)"
+                           name="title" [(ngModel)]="element.title"/>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container id="year" matColumnDef="year">
+                <mat-header-cell *matHeaderCellDef>Jaar</mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <input [value]="element.year" (blur)="editProduct(element)"
+                        name="year" [(ngModel)]="element.year"/>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container id="price" matColumnDef="price">
+                <mat-header-cell *matHeaderCellDef>Prijs</mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <input [value]="element.price" (blur)="editProduct(element)"
+                           name="price" [(ngModel)]="element.price"/>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container id="delete" matColumnDef="delete">
+                <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <button class="delete-button" (click)="deleteProduct(element)">
+                        <i class="material-icons">close</i>
+                    </button>
+                </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+        </mat-table>
+
+    </div>
+
+    <button id="open-add-product" class="big-button" (click)="openAddProduct()">
+        Voeg nieuw product toe
+    </button>
+
+    <div *ngIf="actionAddProduct" id="add-product-wrap" class="mat-elevation-z8">
+        <h2>Voeg nieuw product toe</h2>
+
+        <button class="close-button" (click)="closeAddProduct()">
+            <i class="material-icons">close</i>
+        </button>
+    </div>
+
+</div>

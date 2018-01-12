@@ -1,0 +1,51 @@
+<div class="content">
+
+    <h1>Registreren</h1>
+
+    <div class="content-wrap">
+
+        <form name="registerForm" #registerForm="ngForm" (ngSubmit)="register()">
+
+            <mat-form-field class="full-width">
+                <input matInput type="text" name="name" placeholder="Volledige naam" required [(ngModel)]="user.fullName" #fullName="ngModel" />
+                <mat-error [hidden]="fullName.valid">
+                    Dit veld is verplicht
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <input matInput type="text" name="postcode" placeholder="Postcode" required [(ngModel)]="user.postcode" #postcode="ngModel" />
+                <mat-error [hidden]="postcode.valid">
+                    Dit veld is verplicht
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <input matInput type="text" name="streetnumber" placeholder="Huisnummer" required [(ngModel)]="user.streetnumber" #streetnumber="ngModel" />
+                <mat-error [hidden]="streetnumber.valid">
+                    Dit veld is verplicht
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <input matInput type="text" name="email" placeholder="E-mailadres" required [(ngModel)]="user.emailAddress" #email="ngModel" />
+                <mat-error [hidden]="email.valid">
+                    Dit veld is verplicht
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <input matInput type="password" name="password" placeholder="Wachtwoord" required [(ngModel)]="user.password" #password="ngModel" />
+                <mat-error [hidden]="password.valid">
+                    Dit veld is verplicht
+                </mat-error>
+            </mat-form-field>
+
+            <button id="register-button" mat-raised-button type="submit">Registreren</button>
+
+        </form>
+
+        Of <a routerLink="/login">log in</a>
+
+    </div>
+</div>

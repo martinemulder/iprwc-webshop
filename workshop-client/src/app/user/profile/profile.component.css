@@ -1,0 +1,48 @@
+table {
+    margin-top: 30px;
+    width: 75%;
+    margin-left: 25%;
+}
+
+tr {
+    height: 25px;
+    border-spacing: 10px;
+}
+
+#change-profile-button, #change-password-button, #delete-account-button {
+    float: right;
+    margin-right: 20px;
+    margin-top: 60px;
+}
+
+#delete-account-button {
+    background: #b8566d;
+    color: white!important;
+}
+
+#delete-account {
+    position: absolute;
+    width: 95%;
+    margin-left: 2.5%;
+    background: #fff;
+    padding: 60px 40px;
+    text-align: center;
+    top: 40px;
+    color: rgba(0,0,0,.87);
+}
+
+#delete-account h1 {
+    margin-bottom: 20px;
+}
+
+#delete-account button:first-of-type {
+    margin-right: 20px;
+}
+
+#delete-account .close-button {
+    background: transparent;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    box-shadow: none;
+}

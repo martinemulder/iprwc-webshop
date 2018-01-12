@@ -1,0 +1,69 @@
+table {
+    width: 100%;
+    border-collapse: separate;
+    margin: 30px 0 30px 0;
+}
+
+table img {
+    height: 100px;
+    vertical-align: middle;
+    margin: 10px;
+}
+
+th {
+    padding: 15px 0;
+    text-align: center;
+    font-family: montserrat-regular;
+    font-size: 1.1em;
+}
+
+td {
+    text-align: center;
+}
+
+tr {
+    padding: 10px 0;
+    border-spacing: 10px;
+}
+
+tr th:first-of-type, tr td:first-of-type {
+    text-align: left;
+}
+
+tr:nth-child(even) {
+    background: rgba(0,0,0,0.1);
+}
+
+tr:last-of-type td {
+   padding: 15px 0;
+    font-family: montserrat-regular;
+    font-size: 1.1em;
+}
+
+#checkout-button {
+    width: 50%;
+    float: right;
+    font-size: 1.2em;
+    padding: 15px 80px;
+    font-family: montserrat-regular!important;
+}
+
+#order-wrap {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: flex-end;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+#order-wrap p, #order-wrap button {
+    float: left;
+}
+
+#order-wrap p {
+    vertical-align: center;
+    margin-right: 30px;
+}
+

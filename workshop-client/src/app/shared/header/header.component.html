@@ -1,0 +1,37 @@
+<header color="primary">
+
+    <div class="content">
+        <a id="logo" routerLink="/" class="clickable">
+            <img src="../../../assets/images/logo.png" alt="logo" />
+        </a>
+
+        <nav id="menu-wrap">
+
+            <nav id="user-menu">
+                <div *ngIf="authenticated">
+                    <span class="welcome">Welkom {{ userName }}</span>
+                    <button routerLink="/profiel" id="profiel-button">
+                        <i class="material-icons">person_pin</i>
+                    </button>
+
+                    <button id="logout-button" mat-raised-button (click)="logout()">Uitloggen</button>
+                </div>
+                <div *ngIf="!authenticated">
+                    <button id="login-button" mat-raised-button (click)="login()">Inloggen</button>
+                </div>
+
+            </nav>
+
+            <nav id="main-menu">
+
+                <button routerLink="/winkelmand" id="shopping-cart-button" class="mat-accent button">
+                    <i class="material-icons">shopping_cart</i>
+                    <span *ngIf="productService.getProductCount() > 0" id="shop-count">{{ productService.getProductCount() }}</span>
+                </button>
+
+            </nav>
+        </nav>
+
+    </div>
+
+</header>

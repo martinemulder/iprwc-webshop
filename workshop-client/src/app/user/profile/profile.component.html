@@ -1,0 +1,58 @@
+<div *ngIf="authenticated" class="content">
+
+    <h1>Mijn profiel</h1>
+
+    <div class="content-wrap">
+
+        <table>
+            <tr>
+                <td>Naam</td>
+                <td>{{user.fullName}}</td>
+            </tr>
+            <tr>
+                <td>Postcode</td>
+                <td>{{user.postcode}}</td>
+            </tr>
+            <tr>
+                <td>Huisnummer</td>
+                <td>{{user.streetnumber}}</td>
+            </tr>
+            <tr>
+                <td>E-mail</td>
+                <td>{{user.emailAddress}}</td>
+            </tr>
+        </table>
+
+        <button id="delete-account-button" mat-raised-button (click)="openDeleteAccount()">Account verwijderen</button>
+
+        <button id="change-password-button" mat-raised-button>Wachtwoord wijzigen</button>
+        <button id="change-profile-button" mat-raised-button>Gegevens wijzigen</button>
+
+    </div>
+
+    <h1>Bestellingen</h1>
+
+    <div class="content-wrap">
+
+    </div>
+
+    <div *ngIf="actionDeleteAccount" id="delete-account">
+
+        <h1>Weet je zeker dat je jouw account wil verwijderen?</h1>
+
+        <button mat-raised-button (click)="deleteAccount()">Ja, verwijder mijn account</button>
+        <button mat-raised-button (click)="closeDeleteAccount()">Nee</button>
+
+        <button class="close-button" (click)="closeDeleteAccount()">
+            <i class="material-icons">close</i>
+        </button>
+
+    </div>
+
+</div>
+
+<div *ngIf="!authenticated" class="content">
+
+    <h1>Oeps, je moet eerst <a routerLink="/login" class="link">inloggen</a></h1>
+
+</div>

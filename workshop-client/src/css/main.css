@@ -1,0 +1,301 @@
+/* Angular */
+
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+/* Fonts */
+
+@font-face {
+    font-family: 'Raleway';
+    src: url('../fonts/raleway.ttf');
+}
+
+@font-face {
+    font-family: 'Raleway SemiBold';
+    src: url('../fonts/raleway-semibold.ttf');
+}
+
+@font-face {
+    font-family: 'montserrat-regular';
+    src: url('../fonts/montserrat/montserrat-regular-webfont.otf') format('otf'),
+    url('../fonts/montserrat/montserrat-regular-webfont.ttf') format('ttf'),
+    url('../fonts/montserrat/montserrat-regular-webfont.woff') format('woff'),
+    url('../fonts/montserrat/montserrat-regular-webfont.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'montserrat-light';
+    src: url('../fonts/montserrat/montserrat-light-webfont.otf') format('otf'),
+    url('../fonts/montserrat/montserrat-light-webfont.woff') format('woff'),
+    url('../fonts/montserrat/montserrat-light-webfont.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'montserrat-semibold';
+    src: url('../fonts/montserrat/montserrat-semibold-webfont.otf') format('otf'),
+    url('../fonts/montserrat/montserrat-semibold-webfont.woff') format('woff'),
+    url('../fonts/montserrat/montserrat-semibold-webfont.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Angular */
+
+.mat-card-actions {
+    margin: 10px 0 -10px 0!important;
+}
+
+/* General */
+
+/* Tooltip */
+
+.tooltip span {
+    display: none;
+}
+
+.tooltip:hover span {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    /*-webkit-text-fill-color: white;*/
+}
+
+body, html {
+    position: relative;
+}
+
+html {
+    margin-top: 0 !important;
+}
+
+button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+button, input, textarea {
+    border: none;
+    outline: none;
+}
+
+button:disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.delete-button {
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    background: #972f36;
+    background: #fc525f;
+    color: white;
+    vertical-align: middle;
+}
+
+input:focus {
+    outline: none;
+}
+
+*, body, button, input, textarea, .mat-header-cell, .mat-toolbar, .mat-toolbar h1, .mat-toolbar h2,
+.mat-toolbar h3, .mat-toolbar h4, .mat-toolbar h5, .mat-toolbar h6 {
+    font-family: 'montserrat-light';
+}
+
+#shop-count {
+    font-family: montserrat-semibold;
+}
+
+body {
+    font-size: 0.9em;
+    line-height: 1.6em;
+    min-height: 100vh;
+    height: 100%;
+    background: #3f3f3f;
+    background: #443c3e;
+    color: #d5d5d5;
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    border: none;
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+    background: #ffd740;
+    padding: 5px 10px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+}
+
+.mat-button, .mat-icon-button, .mat-raised-button {
+    background: #ffd740;
+    color: #282828!important;
+}
+
+button:hover {
+    opacity: 0.75;
+}
+
+.big-button {
+    width: 50%;
+    float: right;
+    font-size: 1.1em;
+    padding: 13px!important;
+    margin-top: 40px;
+}
+
+a, .link {
+    background: none;
+    box-shadow: none;
+    color: #adebf8;
+    padding: 0;
+    font-size: 1em;
+}
+
+a:hover, .link:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
+
+h1 {
+    font-size: 2em;
+    line-height: 1.4em;
+    padding: 30px 0;
+}
+
+h2 {
+    font-size: 1.4em;
+    margin: 20px 0;
+}
+
+h3 {
+    font-size: 1.2em;
+    margin: 20px 0;
+    font-family: 'montserrat-regular';
+}
+
+b {
+    font-family: 'montserrat-semibold';
+}
+
+form {
+    margin-bottom: 30px;
+}
+
+input[type="text"] {
+    /*border: 3px solid white;*/
+    /*-webkit-border-radius: 3px;*/
+    /*-moz-border-radius: 3px;*/
+    /*border-radius: 3px;*/
+    margin-bottom: 5px;
+}
+
+input[type='password'] {
+    /*border: 3px solid white;*/
+    /*-webkit-border-radius: 3px;*/
+    /*-moz-border-radius: 3px;*/
+    /*border-radius: 3px;*/
+    margin-bottom: 5px;
+}
+
+input, textarea, button {
+    padding: 8px;
+    font-family: montserrat-light!important;
+}
+
+input[type="date"] {
+    padding: 7px;
+}
+
+input[type="radio"] {
+    background: white;
+    display: inline-block;
+    width: 20px!important;
+    height: 20px;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    cursor: pointer;
+    vertical-align: text-bottom;
+    border: 4px solid white;
+    padding: 0;
+}
+
+input[type="radio"]:checked, input[type="radio"]:hover, input[type="checkbox"]:hover, input[type="checkbox"]:checked {
+    background: #ffd740;
+}
+
+input[type="checkbox"] {
+    -webkit-appearance: none!important;
+    -moz-appearance: none!important;
+    appearance: none!important;
+    background: white;
+    width: 10px!important;
+    height: 10px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 3px solid white;
+    padding: 8px;
+}
+
+input[type="checkbox"]:checked:hover {
+    /*background: white;*/
+}
+
+input[type="radio"] {
+    margin-bottom: 0;
+}
+
+input {
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+main {
+    padding: 40px;
+}
+
+/* Content */
+
+.content {
+    position: relative;
+    width: 1200px;
+    margin: 0 auto;
+    height: 100%;
+}
+
+.content-wrap {
+    position: relative;
+    width: 90%;
+    margin-left: 10%;
+    padding-bottom: 60px;
+}
+
+/* Clearfix */
+
+.content:after, .content-wrap:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}

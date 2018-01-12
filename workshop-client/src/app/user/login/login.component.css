@@ -1,0 +1,17 @@
+form {
+    width: 100%;
+}
+
+.mat-form-field {
+    width: 47%;
+    margin-right: 4%;
+    margin-bottom: 20px;
+}
+
+.mat-form-field:nth-child(2) {
+    margin-right: 0;
+}
+
+input {
+    color: white;
+}

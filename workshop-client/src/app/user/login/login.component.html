@@ -1,0 +1,38 @@
+<div class="content">
+
+    <h1>Inloggen</h1>
+
+    <div class="content-wrap">
+
+        <form name="loginForm" #loginForm="ngForm" (ngSubmit)="login()">
+
+            <mat-form-field class="full-width">
+                <input matInput type="email" name="email" placeholder="E-mailadres" required [(ngModel)]="user.emailAddress" #email="ngModel" />
+                <mat-error [hidden]="email.valid">
+                    Vul een geldig e-mailadres in
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <input matInput type="password" name="password" placeholder="Wachtwoord" required [(ngModel)]="user.password" #password="ngModel" />
+                <mat-error [hidden]="password.valid">
+                    Dit veld is verplicht
+                </mat-error>
+            </mat-form-field>
+
+            <br />
+            <input type="checkbox" name="remember" [(ngModel)]="remember" /> Onthoud mij
+
+
+            <button id="login-button" class="big-button">Inloggen</button><br />
+
+
+            <!--<button id="login-button" mat-raised-button type="submit" class="mat-accent" [disabled]="!loginForm.valid">Inloggen</button>-->
+
+        </form>
+
+
+        Of <a routerLink="/registreer">registreer</a>
+
+    </div>
+</div>
