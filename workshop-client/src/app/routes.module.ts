@@ -21,16 +21,14 @@ export const routes: Routes =
     { path: '', component: HomeComponent },
     { path: 'registreer', component: RegisterComponent },
     { path: 'login', component: LoginComponent },
-    { path: 'gebruikers', component: ListComponent },
-    { path: 'bestellingen', component: OrderListComponent },
-    { path: 'producten', component: ProductListComponent },
     { path: 'bestelling-afgerond', component: OrderComponent },
     { path: 'profiel', component: ProfileComponent, canActivate:[AuthGuardService] },
     { path: 'winkelmand', component: ShoppingBasketComponent },
-    { path: 'webshop-admin', component: AdminComponent, canActivate:[AuthGuardAdminService] },
-    { path: 'webshop-admin/producten', component: AdminComponent, canActivate:[AuthGuardAdminService] },
-    { path: 'webshop-admin/gebruikers', component: AdminComponent, canActivate:[AuthGuardAdminService] },
-    { path: 'webshop-admin/bestellingen', component: AdminComponent, canActivate:[AuthGuardAdminService] }
+    // Admin routes
+    { path: 'gebruikers', component: ListComponent, canActivate:[AuthGuardAdminService] },
+    { path: 'bestellingen', component: OrderListComponent, canActivate:[AuthGuardAdminService] },
+    { path: 'producten', component: ProductListComponent, canActivate:[AuthGuardAdminService] },
+    { path: 'webshop-admin', component: AdminComponent, canActivate:[AuthGuardAdminService] }
 
 ];
 

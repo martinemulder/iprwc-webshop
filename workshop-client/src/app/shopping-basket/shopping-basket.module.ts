@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ShoppingBasketComponent } from "./shopping-basket.component";
 import { MatTableModule } from "@angular/material/table";
 import { RouterModule } from "@angular/router";
+import { ShoppingBasketService } from "./shopping-basket.service";
 
 @NgModule({
     imports: [
@@ -10,7 +11,8 @@ import { RouterModule } from "@angular/router";
         MatTableModule,
         RouterModule
     ],
-    declarations: [ShoppingBasketComponent]
+    declarations: [ ShoppingBasketComponent ],
+    providers: [ ShoppingBasketService ]
 })
 
 export class ShoppingBasketModule {

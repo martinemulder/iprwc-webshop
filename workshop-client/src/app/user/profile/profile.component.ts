@@ -16,6 +16,7 @@ export class ProfileComponent implements OnInit {
     public user: User;
     public userName = '';
     public actionDeleteAccount: boolean = false;
+    public actionChangeUserDate: boolean = false;
 
     constructor(private authService: AuthorizationService, private router: Router, private userService: UserService) {
 
@@ -24,7 +25,6 @@ export class ProfileComponent implements OnInit {
                 this.updateAuthentication();
             }
         );
-
         this.updateAuthentication();
 
     }
@@ -47,6 +47,11 @@ export class ProfileComponent implements OnInit {
         this.userName = user.fullName;
     }
 
+    public editUser() {
+        this.userService.edit(this.user);
+        this.actionChangeUserDate = false;
+    }
+
     public openDeleteAccount() {
         this.actionDeleteAccount = true;
     }
@@ -57,6 +62,14 @@ export class ProfileComponent implements OnInit {
 
     public deleteAccount() {
         this.userService.deleteUser(this.user, true);
+    }
+
+    public openChangeUserData() {
+        this.actionChangeUserDate = true;
+    }
+
+    public closeChangeUserData() {
+        this.actionChangeUserDate = false;
     }
 
 }

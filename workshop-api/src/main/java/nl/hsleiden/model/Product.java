@@ -12,7 +12,7 @@ public class Product implements Principal {
 
     @NotEmpty
     @Length(min = 1, max = 8)
-    @JsonView(View.Public.class)
+    @JsonView(View.Private.class)
     private int id;
 
     @NotEmpty
@@ -52,7 +52,7 @@ public class Product implements Principal {
 
     public Product() {}
 
-    public Product(int id, int barcode, String artist, String title, int year, double price) {
+    public Product(int id, int barcode, String artist, String title, int year, double price, int quantity) {
 
         this.id = id;
         this.barcode = barcode;
@@ -60,11 +60,13 @@ public class Product implements Principal {
         this.title = title;
         this.year = year;
         this.price = price;
+        this.quantity = quantity;
 
     }
 
-    public Product(int barcode, String artist, String title, int year, double price) {
+    public Product(int id, int barcode, String artist, String title, int year, double price) {
 
+        this.id = id;
         this.barcode = barcode;
         this.artist = artist;
         this.title = title;

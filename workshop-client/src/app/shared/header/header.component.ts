@@ -7,6 +7,7 @@ import { AuthorizationService } from '../authorization.service';
 import { User } from "../../user/user";
 import {Product} from "../../product/product";
 import {ProductService} from "../../product/product.service";
+import {ShoppingBasketService} from "../../shopping-basket/shopping-basket.service";
 
 @Component({
     selector: 'app-header',
@@ -19,7 +20,7 @@ export class HeaderComponent {
     public authenticated: boolean = false;
     public userName = '';
 
-    constructor(private authService: AuthorizationService, private router: Router, public productService: ProductService) {
+    constructor(private authService: AuthorizationService, private router: Router, public shoppingBasketService: ShoppingBasketService) {
 
         authService.authorized$.subscribe(
             authorized => {

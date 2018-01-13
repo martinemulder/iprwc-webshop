@@ -42,12 +42,15 @@ public class ProductResource {
     }
 
     @POST
+    @Consumes(MediaType.APPLICATION_JSON)
     @RolesAllowed("ADMIN")
     public void add(Product product, @Auth User authenticator) {
         service.add(product, authenticator);
     }
 
     @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    @JsonView(View.Public.class)
     @RolesAllowed("ADMIN")
     public void update(Product product, @Auth User authenticator) {
         service.update(product, authenticator);

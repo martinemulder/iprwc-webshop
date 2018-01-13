@@ -4,9 +4,9 @@
 
         <div class="content-wrap">
 
-        <h2 *ngIf="productService.getProductCount() == 0">Geen producten in winkelmandje</h2>
+        <h2 *ngIf="shoppingBasketService.getProductCount() == 0">Geen producten in winkelmandje</h2>
 
-        <table *ngIf="productService.getProductCount() > 0">
+        <table *ngIf="shoppingBasketService.getProductCount() > 0">
 
             <tr>
                 <th>Product</th>
@@ -15,7 +15,7 @@
                 <th>Aantal</th>
                 <th></th>
             </tr>
-            <tr *ngFor="let product of productService.productsInBasket">
+            <tr *ngFor="let product of products">
                 <td>
                     <img src="'../../assets/images/products/{{ product.artist.replace(' ','-') | lowercase }}-{{ product.title.split(' ').join('-') | lowercase }}.jpg" />
                     {{product.artist}} {{product.title}}</td>
@@ -34,14 +34,14 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>Totaal: €{{productService.getTotalPrice()}}</td>
+                <td>Totaal: €{{shoppingBasketService.getTotalPrice()}}</td>
             </tr>
 
         </table>
 
         <div id="order-wrap">
             <p *ngIf="!authenticated"><a routerLink="/registreer">Registreer</a> of <a routerLink="/login">login</a> om te kunnen bestellen</p>
-            <button [disabled]="!authenticated || productService.getProductCount() == 0" id="checkout-button" mat-raised-button (click)="order(productService.productsInBasket)">Bestellen</button>
+            <button [disabled]="!authenticated || shoppingBasketService.getProductCount() == 0" id="checkout-button" mat-raised-button (click)="order(shoppingBasketService.productsInBasket)">Bestellen</button>
         </div>
         </div>
 

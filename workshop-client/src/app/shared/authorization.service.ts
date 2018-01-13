@@ -1,6 +1,7 @@
 
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
+import {User} from "../user/user";
 
 @Injectable()
 export class AuthorizationService {
@@ -8,7 +9,6 @@ export class AuthorizationService {
     public login: string = null;
     private password: string = null;
     private authenticator: Object = null;
-    private role: string = null;
 
     public authorized$ = new Subject<boolean>();
 
@@ -18,32 +18,39 @@ export class AuthorizationService {
 
     public isAdmin(): boolean {
         this.restoreAuthorization();
-        console.log(this.authenticator);
-        console.log(this.role);
 
-        return this.login !== null && this.password !== null && this.role == "ADMIN";
+        return this.login !== null && this.password !== null && this.getRole() == "ADMIN";
     }
 
     public hasAuthorization(): boolean {
         return this.login !== null && this.password !== null;
     }
 
-    public setAuthorization(login: string, password: string, role: string): void {
+    public setAuthorization(login: string, password: string): void {
         this.login = login;
         this.password = password;
-        if (role == "ADMIN") {
-            console.log('Admin');
-            this.role = role;
+    }
+
+    public setRole(authenticator: User, local: boolean) {
+        let storage = local ? localStorage : sessionStorage;
+        storage.setItem('role', authenticator.role);
+    }
+
+    public getRole() {
+
+        let role = sessionStorage.getItem('role');
+
+        if (role === null) {
+            role = localStorage.getItem('role');
         }
+        return role;
     }
 
     public storeAuthorization(authenticator: Object, local: boolean) {
         this.authenticator = authenticator;
-
         let authorization = {
             login: this.login,
             password: this.password,
-            role: this.role,
             authenticator: this.authenticator
         };
 
@@ -68,7 +75,6 @@ export class AuthorizationService {
 
             this.login = authorization['login'];
             this.password = authorization['password'];
-            this.role = authorization['role'];
             this.authenticator = authorization['authenticator'];
 
             this.authorized$.next(true);

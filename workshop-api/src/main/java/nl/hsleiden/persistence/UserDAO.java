@@ -22,6 +22,7 @@ public class UserDAO {
     private List<User> users;
     private PreparedStatement getUsers;
     private PreparedStatement addUser;
+    private PreparedStatement editUser;
     private PreparedStatement deleteUser;
     
     public UserDAO() {
@@ -56,11 +57,13 @@ public class UserDAO {
     }
     
     public User get(int id) {
-        try {
-            return users.get(id);
-        } catch(IndexOutOfBoundsException exception) {
-            return null;
-        }
+        users = getAll();
+
+        Optional<User> result = users.stream()
+                .filter(user -> user.getId() == id)
+                .findAny();
+
+        return result.isPresent() ? result.get() : null;
     }
     
     public User getByEmailAddress(String emailAddress) {
@@ -87,11 +90,20 @@ public class UserDAO {
     }
     
     public void update(int id, User user) {
-        users.set(id, user);
+        try {
+            editUser.setString(1,user.getFullName());
+            editUser.setString(2,user.getPostcode());
+            editUser.setString(3,user.getStreetnumber());
+            editUser.setString(4,user.getEmailAddress());
+            editUser.setString(5,user.getPassword());
+            editUser.setInt(6,id);
+            editUser.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
     
     public void delete(int id) {
-        System.out.println("Deleting user in DAO");
         try {
             deleteUser.setInt(1,id);
             deleteUser.execute();
@@ -104,6 +116,7 @@ public class UserDAO {
         try {
             getUsers = dbConnection.prepareStatement("SELECT * from user;");
             addUser = dbConnection.prepareStatement("INSERT INTO user(fullname, postcode, streetnumber, email, password, role) VALUES (?,?,?,?,?,?)");
+            editUser = dbConnection.prepareStatement("UPDATE user SET fullname = ?, postcode = ?, streetnumber = ?, email = ?, password = ? WHERE id = ?");
             deleteUser = dbConnection.prepareStatement("DELETE FROM user WHERE id = ?");
         } catch (SQLException e) {
             e.printStackTrace();

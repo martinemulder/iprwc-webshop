@@ -24,36 +24,3 @@
 .mat-cell input {
     width: 100%;
 }
-
-#open-add-product {
-    /*font-size: 1.3em;*/
-    /*padding: 13px;*/
-    /*width: 50%;*/
-    /*float: right;*/
-    /*margin-top: 40px;*/
-}
-
-#add-product-wrap {
-    width: 100%;
-    background: #fff;
-    color: rgba(0,0,0,.87)!important;
-    padding: 40px;
-    position: absolute;
-    top: 20px;
-}
-
-#add-product-wrap h2 {
-    margin-bottom: 20px;
-}
-
-#add-product-wrap .close-button {
-    background: transparent;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    box-shadow: none;
-}
-
-#add-product-wrap button[type="submit"] {
-    margin-top: 20px;
-}

@@ -19,28 +19,16 @@ public class Order implements Principal {
     @Length(min = 1, max = 10)
     @JsonView(View.Private.class)
     private int userId;
-
-    @NotEmpty
-    @Length(min = 1, max = 10)
-    @JsonView(View.Public.class)
-    private int productId;
-
-    @NotEmpty
-    @Length(min = 1, max = 10)
-    @JsonView(View.Public.class)
-    private int quantity;
     
     @NotEmpty
     @Length(min = 8, max = 30)
     @JsonView(View.Public.class)
     private String datetime;
 
-    public Order(int orderNr,int userId, int productId, int quantity, String datetime) {
+    public Order(int orderNr,int userId, String datetime) {
 
         this.orderNr = orderNr;
         this.userId = userId;
-        this.productId = productId;
-        this.quantity = quantity;
         this.datetime = datetime;
 
     }
@@ -59,22 +47,6 @@ public class Order implements Principal {
 
     public void setUserId(int userId) {
         this.userId = userId;
-    }
-
-    public int getProductId() {
-        return productId;
-    }
-
-    public void setProductId(int productId) {
-        this.productId = productId;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
     }
 
     public String getDatetime() {

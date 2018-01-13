@@ -7,6 +7,7 @@ import { User } from '../user/user';
 import { Observable } from "rxjs/Observable";
 import {Product} from "../product/product";
 import {ProductService} from "../product/product.service";
+import {ShoppingBasketService} from "../shopping-basket/shopping-basket.service";
 
 @Component({
     selector: 'app-home',
@@ -21,7 +22,8 @@ export class HomeComponent {
     public products: Product[];
 
 
-    constructor(private authService: AuthorizationService, private productService: ProductService) {
+    constructor(private authService: AuthorizationService, private productService: ProductService,
+                private shoppingBasketService: ShoppingBasketService) {
 
         authService.authorized$.subscribe(
             authorized => {
@@ -59,7 +61,7 @@ export class HomeComponent {
     }
 
     private addToBasket(product: Product) {
-        this.productService.addToBasket(product);
+        this.shoppingBasketService.add(product);
     }
 
 }

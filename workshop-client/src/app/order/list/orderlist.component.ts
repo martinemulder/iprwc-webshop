@@ -1,10 +1,13 @@
 
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { ListDataSource } from './orderlist.datasource';
 import { OrderService } from "../order.service";
 import {Product} from "../../product/product";
 import {ProductService} from "../../product/product.service";
 import {Order} from "../order";
+import {User} from "../../user/user";
+import {forEach} from "@angular/router/src/utils/collection";
+import {UserService} from "../../user/user.service";
 
 @Component({
     selector: 'order-list',
@@ -12,14 +15,21 @@ import {Order} from "../order";
     styleUrls: ['./orderlist.component.css'],
 })
 
-export class OrderListComponent {
+export class OrderListComponent implements OnInit {
 
-    public displayedColumns = ['orderNr', 'product', 'quantity', 'date','delete'];
+    public displayedColumns = ['orderNr', 'user', 'date','delete'];
     public dataSource = null;
+    public orders = [];
+    public user: User;
+    public users: User[] = [];
 
     public products: Product[];
 
     constructor(private orderService: OrderService, private productService: ProductService) {
+
+    }
+
+    ngOnInit() {
 
         this.getOrdersList();
         this.getProductList();
@@ -30,9 +40,16 @@ export class OrderListComponent {
 
         this.orderService.getAll().subscribe(
             orders => {
-                this.dataSource = new ListDataSource(orders);
+                this.orders = orders.map(order => { return {
+                    order: order,
+                    user: this.getUser(order.orderNr)};
+                });
+                this.dataSource = new ListDataSource(this.orders);
+                console.log(this.orders);
+                // this.orders = orders.map(order => order);
             }
         );
+
     }
 
     private getProductList() {
@@ -44,20 +61,19 @@ export class OrderListComponent {
         );
     }
 
-    public getProduct(id: number) {
-        return this.products.find((targetProduct) => targetProduct.id != id);
-    }
-
-    public getTotalPrice() {
-
+    public getUser(orderNr: number) {
+        // let newUser: User = new User();
+        // this.orderService.getUser(orderNr).subscribe(
+        //     user => {
+        //         newUser = user;
+        //     }
+        // );
+        // return newUser;
+        return this.orderService.getUser(orderNr);
     }
 
     public hasData() {
         return this.dataSource !== null;
-    }
-
-    public deleteOrder(order: Order) {
-        this.orderService.deleteOrder(order.orderNr);
     }
 
 }

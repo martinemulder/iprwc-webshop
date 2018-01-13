@@ -3,6 +3,7 @@ import { Observable } from "rxjs/Observable";
 import { ApiService } from "../shared/api.service";
 import { Order } from "./order";
 import {Product} from "../product/product";
+import {User} from "../user/user";
 
 @Injectable()
 export class OrderService {
@@ -15,19 +16,18 @@ export class OrderService {
     }
 
     public deleteOrder(orderNr: number) {
-        console.log(orderNr);
-        this.api.delete<void>('orders/delete/'+orderNr)
+        this.api.delete<void>('orders/'+orderNr)
             .subscribe(
                 (response) => console.log('Order successfully deleted.'),
                 (error) => console.log('Order was not removed')
             );
     }
-    public addOrderProduct() {
 
+    public getUser(orderNr: number) {
+        return this.api.get<User>('orders/'+orderNr);
     }
 
     public addOrder(products: Product[]) {
-
         let data = [];
 
         for (let i = 0; i < products.length; i++) {

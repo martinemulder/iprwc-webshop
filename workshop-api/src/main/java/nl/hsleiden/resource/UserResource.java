@@ -44,27 +44,23 @@ public class UserResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @JsonView(View.Protected.class)
-//    public void create(@Valid User user) {
     public void create(User user) {
         service.add(user);
     }
     
     @PUT
-    @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @JsonView(View.Protected.class)
-    @RolesAllowed("GUEST")
-    public void update(@PathParam("id") int id, @Auth User authenticator, User user) {
-        service.update(authenticator, id, user);
+    @RolesAllowed({"GUEST","ADMIN"})
+    public void update(@Auth User authenticator, User user) {
+        service.update(authenticator, user);
     }
     
     @DELETE
-    @Path("/delete/{email}")
+    @Path("/{email}")
     @JsonView(View.Public.class)
     @RolesAllowed({"GUEST","ADMIN"})
     public void delete(@PathParam("email") String email, @Auth User authenticator) {
-        System.out.println("Auth: " + authenticator);
-        System.out.println(email);
         service.delete(email, authenticator);
     }
     

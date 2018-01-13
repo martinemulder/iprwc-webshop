@@ -30,16 +30,16 @@ public class UserService extends BaseService<User> {
         dao.add(user);
     }
     
-    public void update(User authenticator, int id, User user) {
+    public void update(User authenticator, User user) {
         // Check if this user exists
-        User oldUser = get(id);
+        User oldUser = get(authenticator.getId());
         
         if (!authenticator.hasRole("ADMIN")) {
             // Check if user is updating itself
             assertSelf(authenticator, oldUser);
         }
         
-        dao.update(id, user);
+        dao.update(authenticator.getId(), user);
     }
     
     public void delete(String email, User authenticator) {

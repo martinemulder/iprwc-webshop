@@ -10,6 +10,10 @@
                 <td>{{user.fullName}}</td>
             </tr>
             <tr>
+                <td>E-mailadres</td>
+                <td>{{user.emailAddress}}</td>
+            </tr>
+            <tr>
                 <td>Postcode</td>
                 <td>{{user.postcode}}</td>
             </tr>
@@ -17,26 +21,68 @@
                 <td>Huisnummer</td>
                 <td>{{user.streetnumber}}</td>
             </tr>
-            <tr>
-                <td>E-mail</td>
-                <td>{{user.emailAddress}}</td>
-            </tr>
         </table>
 
         <button id="delete-account-button" mat-raised-button (click)="openDeleteAccount()">Account verwijderen</button>
 
-        <button id="change-password-button" mat-raised-button>Wachtwoord wijzigen</button>
-        <button id="change-profile-button" mat-raised-button>Gegevens wijzigen</button>
+        <button id="change-profile-button" (click)="openChangeUserData()" mat-raised-button>Gegevens wijzigen</button>
+
+    </div>
+
+    <div *ngIf="actionChangeUserDate" id="change-user-data" class="mat-elevation-z8 module">
+
+        <h1>Wijzig jouw gegevens</h1>
+
+        <form name="change-user-data-form" id="change-user-data-form"
+              #userDataForm="ngForm" (ngSubmit)="editUser()" class="user-form">
+
+            <div class="form-group">
+                <label for="fullname">Naam</label>
+                <input matInput autofocus id="fullname" name="fullname"
+                       required [(ngModel)]="user.fullName" #fullname="ngModel" />
+            </div>
+            <div class="form-group">
+                <label for="email">E-mailadres</label>
+                <input name="email" id="email"
+                       required [(ngModel)]="user.emailAddress" #email="ngModel" />
+            </div>
+            <div class="form-group">
+                <label for="postcode">Postcode</label>
+                <input name="postcode" id="postcode"
+                       required [(ngModel)]="user.postcode" #postcode="ngModel" />
+            </div>
+            <div class="form-group">
+                <label for="streetnumber">Straatnummer</label>
+                <input id="streetnumber" name="streetnumber"
+                       required [(ngModel)]="user.streetnumber" #streetnumber="ngModel" />
+            </div>
+            <div class="form-group">
+                <label for="password">Wachtwoord</label>
+                <input type="password" id="password" name="password"
+                       required [(ngModel)]="user.password" #password="ngModel" />
+            </div>
+
+            <div class="form-group">
+                <button type="submit" mat-raised-button class="button big-button">
+                    Sla gegevens op
+                </button>
+            </div>
+
+        </form>
+
+        <button class="close-button" (click)="closeChangeUserData()">
+            <i class="material-icons">close</i>
+        </button>
 
     </div>
 
     <h1>Bestellingen</h1>
 
-    <div class="content-wrap">
+    <div class="content-wrap" >
 
     </div>
 
-    <div *ngIf="actionDeleteAccount" id="delete-account">
+    <div *ngIf="actionDeleteAccount" id="delete-account" class="mat-elevation-z8 module">
 
         <h1>Weet je zeker dat je jouw account wil verwijderen?</h1>
 

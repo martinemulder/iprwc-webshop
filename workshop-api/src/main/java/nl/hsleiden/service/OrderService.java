@@ -24,7 +24,12 @@ public class OrderService extends BaseService<User> {
     public Collection<Order> getAll() {
         return dao.getAll();
     }
-    
+
+    public User getUser(int orderNr) {
+        User user = dao.getUser(orderNr);
+        return user;
+    }
+
 //    public Product get(int id) {
 ////        return requireResult(dao.get(id));
 //    }

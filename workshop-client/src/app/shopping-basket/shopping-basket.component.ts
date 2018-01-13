@@ -6,6 +6,7 @@ import {User} from "../user/user";
 import {OrderService} from "../order/order.service";
 import {Order} from "../order/order";
 import {Router} from "@angular/router";
+import {ShoppingBasketService} from "./shopping-basket.service";
 
 @Component({
     selector: 'app-shopping-basket',
@@ -21,7 +22,7 @@ export class ShoppingBasketComponent implements OnInit {
     public products: Product[];
     public totalPrice: number;
 
-    constructor(private router: Router, public productService: ProductService, private authService: AuthorizationService, private orderService: OrderService) {
+    constructor(private router: Router, public shoppingBasketService: ShoppingBasketService, public productService: ProductService, private authService: AuthorizationService, private orderService: OrderService) {
 
         authService.authorized$.subscribe(
             authorized => {
@@ -31,7 +32,7 @@ export class ShoppingBasketComponent implements OnInit {
 
         this.updateAuthentication();
 
-        this.getProductInBasket();
+        this.getAll();
         this.getTotalPrice();
     }
 
@@ -53,9 +54,9 @@ export class ShoppingBasketComponent implements OnInit {
         this.userName = user.fullName;
     }
 
-    private getProductInBasket() {
+    private getAll() {
 
-        this.productService.getProductsInBasket().subscribe(
+        this.shoppingBasketService.getAll().subscribe(
             products => {
                 this.products = products;
             }
@@ -75,12 +76,13 @@ export class ShoppingBasketComponent implements OnInit {
     }
 
     private delete(product: Product) {
-        this.productService.deleteFromBasket(product);
+        this.getAll();
+        this.shoppingBasketService.delete(product);
     }
 
     public order(products: Product[]) {
         this.orderService.addOrder(products);
-        this.productService.emptyBasket();
+        this.shoppingBasketService.empty();
         this.goToOrderFeedback();
     }
 

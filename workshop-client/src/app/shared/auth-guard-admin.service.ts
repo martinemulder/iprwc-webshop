@@ -9,11 +9,12 @@ export class AuthGuardAdminService {
     }
 
     canActivate(): boolean {
-        // if (!this.auth.isAdmin()) {
-        //     this.router.navigate(['']);
-        //     return false;
-        // }
-        return true;
+        if (!this.auth.isAdmin()) {
+            this.router.navigate(['']);
+            return false;
+        } else {
+            return true;
+        }
     }
 
 }

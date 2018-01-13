@@ -20,21 +20,6 @@ tr {
     color: white!important;
 }
 
-#delete-account {
-    position: absolute;
-    width: 95%;
-    margin-left: 2.5%;
-    background: #fff;
-    padding: 60px 40px;
-    text-align: center;
-    top: 40px;
-    color: rgba(0,0,0,.87);
-}
-
-#delete-account h1 {
-    margin-bottom: 20px;
-}
-
 #delete-account button:first-of-type {
     margin-right: 20px;
 }
