@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 import { ListDataSource } from './productlist.datasource';
 import { ProductService } from "../product.service";
 import { Product } from "../product";
-import {Router} from "@angular/router";
+import { Router } from "@angular/router";
+import {isNumber} from "util";
 
 @Component({
     selector: 'product-list',
@@ -18,6 +19,9 @@ export class ProductListComponent {
 
     public products: Product[];
     public actionAddProduct: boolean = false;
+
+    public product: Product = new Product();
+    public submitted: boolean = false;
 
     constructor(private productService: ProductService, private router: Router) {
 
@@ -44,13 +48,15 @@ export class ProductListComponent {
 
     public deleteProduct(product: Product) {
         this.productService.deleteProduct(product);
+        this.refresh();
+    }
 
+    public refresh() {
         let thisClass = this;
 
         setTimeout(function() {
             thisClass.getProductList();
         },200);
-
     }
 
     public openAddProduct() {
@@ -59,6 +65,21 @@ export class ProductListComponent {
 
     public closeAddProduct() {
         this.actionAddProduct = false;
+    }
+
+    public addProduct() {
+
+        this.submitted = true;
+
+        if (this.product.artist != null && this.product.title != null && this.product.barcode != null &&
+            this.product.year != null && this.product.price != null) {
+            console.log(this.product);
+            this.productService.addProduct(this.product);
+            this.actionAddProduct = false;
+            this.refresh();
+            this.product = null;
+        }
+
     }
 
 }

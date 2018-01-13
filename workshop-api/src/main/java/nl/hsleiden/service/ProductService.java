@@ -25,16 +25,22 @@ public class ProductService extends BaseService<User> {
     
     public Product get(int id) {
         return dao.get(id);
-//        return requireResult(dao.get(id));
     }
     
-    public void add(Product product) {
-        dao.add(product);
+    public void add(Product product, User authenticator) {
+        // Check if barcode is not equal to existing product
+        Product oldProduct = dao.getByBarcode(product.getBarcode());
+
+        if (oldProduct == null) {
+            if (authenticator.hasRole("ADMIN")) {
+                // Check if user has role admin
+                dao.add(product);
+            }
+        }
     }
     
     public void update(Product product, User authenticator) {
         // Check if this product exists
-//        Product oldProduct = get(id);
         Product oldProduct = dao.getByBarcode(product.getBarcode());
 
         if (oldProduct != null) {
@@ -44,7 +50,6 @@ public class ProductService extends BaseService<User> {
                 dao.update(oldProduct.getId(), product);
             }
         }
-        
     }
     
     public void delete(int barcode, User authenticator) {

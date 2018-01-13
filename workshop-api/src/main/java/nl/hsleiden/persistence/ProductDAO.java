@@ -18,6 +18,7 @@ public class ProductDAO {
     private Database database = Database.getDatabase();
     private PreparedStatement getProducts;
     private PreparedStatement editProduct;
+    private PreparedStatement addProduct;
     private PreparedStatement deleteProduct;
     private Connection dbConnection;
     private List<Product> products;
@@ -70,7 +71,17 @@ public class ProductDAO {
     }
     
     public void add(Product product) {
-        products.add(product);
+
+        try {
+            addProduct.setInt(1, product.getBarcode());
+            addProduct.setString(2,product.getArtist());
+            addProduct.setString(3,product.getTitle());
+            addProduct.setInt(4,product.getYear());
+            addProduct.setDouble(5,product.getPrice());
+            addProduct.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
     
     public void update(int id, Product product) {
@@ -100,6 +111,7 @@ public class ProductDAO {
             getProducts = dbConnection.prepareStatement("SELECT * from product;");
             deleteProduct = dbConnection.prepareStatement("DELETE FROM product WHERE id = ?");
             editProduct = dbConnection.prepareStatement("UPDATE product SET artist = ?, title = ?, year = ?, price = ? WHERE id = ?");
+            addProduct = dbConnection.prepareStatement("INSERT INTO product (barcode, artist, title, year, price) VALUES (?,?,?,?,?)");
         } catch (SQLException e) {
             e.printStackTrace();
         }

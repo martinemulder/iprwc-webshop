@@ -20,15 +20,6 @@ export class ProductService {
 
     }
 
-    public getAll(): Observable<Product[]> {
-        return this.api.get<Product[]>('products');
-    }
-
-    public get(id: number): Observable<Product[]> {
-        console.log(this.api.get<Product[]>('products/'+id));
-        return this.api.get<Product[]>('products/'+id);
-    }
-
     public addToBasket(product: Product) {
 
         if (product) {
@@ -84,6 +75,15 @@ export class ProductService {
         return Observable.of(this.productsInBasket);
     }
 
+    public getAll(): Observable<Product[]> {
+        return this.api.get<Product[]>('products');
+    }
+
+    public get(id: number): Observable<Product[]> {
+        console.log(this.api.get<Product[]>('products/'+id));
+        return this.api.get<Product[]>('products/'+id);
+    }
+
     public getTotalPrice() {
         let prices = this.productsInBasket.map((product) => product.price);
 
@@ -116,9 +116,7 @@ export class ProductService {
 
     public deleteProduct(product: Product): void {
 
-        console.log(product);
-
-        this.api.delete<void>('products/delete/'+product.barcode).subscribe(
+        this.api.delete<void>('products/'+product.barcode).subscribe(
             data => {
             },
             error => {
@@ -129,7 +127,6 @@ export class ProductService {
     }
 
     public editProduct(product: Product): void {
-
         let data = {
             barcode: product.barcode,
             artist: product.artist,
@@ -138,12 +135,31 @@ export class ProductService {
             price: product.price
         };
 
-        this.api.post<void>('products/edit', data).subscribe(
+        this.api.put<void>('products', data).subscribe(
             data => {
                 console.log(true);
             },
             error => {
                 alert('Product aanpassen mislukt.');
+            }
+        );
+    }
+
+    public addProduct(product: Product): void {
+        let data = {
+            barcode: product.barcode,
+            artist: product.artist,
+            title: product.title,
+            year: product.year,
+            price: product.price
+        };
+
+        this.api.post<void>('products', data).subscribe(
+            data => {
+                console.log(true);
+            },
+            error => {
+                alert('Product toevoegen mislukt.');
             }
         );
     }
