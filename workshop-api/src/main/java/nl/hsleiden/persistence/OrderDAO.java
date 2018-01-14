@@ -40,25 +40,6 @@ public class OrderDAO {
         preparedStatements();
 
     }
-
-    public User getUser(int orderNr) {
-//        orders = getAll();
-//        Optional<Order> result = orders.stream()
-//                .filter(order -> order.getOrderNr() == orderNr)
-//                .findAny();
-//
-//        Order order = result.isPresent() ? result.get() : null;
-
-        int userId = get(orderNr).getUserId();
-
-        if (userId != 0){
-            System.out.println("User id is " + userId);
-            User user = this.userDAO.get(userId);
-            System.out.println("User is " + user.getEmailAddress());
-            return user;
-        }
-        return null;
-    }
     
     public List<Order> getAll() {
         ResultSet resultSet;

@@ -14,7 +14,7 @@ import { User } from "../../user/user";
 
 export class OrderListComponent implements OnInit {
 
-    public displayedColumns = ['orderNr', 'user', 'date'];
+    public displayedColumns = ['orderNr', 'date'];
     public dataSource = null;
     public orders = [];
     public user: User;
@@ -37,12 +37,7 @@ export class OrderListComponent implements OnInit {
 
         this.orderService.getAll().subscribe(
             orders => {
-                this.orders = orders.map(order => { return {
-                    order: order,
-                    user: this.getUser(order.orderNr)};
-                });
-                this.dataSource = new ListDataSource(this.orders);
-                console.log(this.orders);
+                this.dataSource = new ListDataSource(orders);
             }
         );
 
@@ -55,10 +50,6 @@ export class OrderListComponent implements OnInit {
                 this.products = products;
             }
         );
-    }
-
-    public getUser(orderNr: number) {
-        return this.orderService.getUser(orderNr);
     }
 
     public hasData() {

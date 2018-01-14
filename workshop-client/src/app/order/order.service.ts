@@ -29,12 +29,6 @@ export class OrderService {
             );
     }
 
-    public getUser(orderNr: number) {
-
-        return this.api.get<User>('orders/'+orderNr);
-
-    }
-
     public addOrder(products: Product[]) {
         let data = [];
 

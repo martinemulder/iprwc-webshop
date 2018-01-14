@@ -7,19 +7,12 @@
 
             <ng-container matColumnDef="orderNr">
                 <mat-header-cell *matHeaderCellDef>Bestelnummer</mat-header-cell>
-                <mat-cell *matCellDef="let element">#{{ element.order.orderNr }}</mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="user">
-                <mat-header-cell *matHeaderCellDef>Gebruiker</mat-header-cell>
-                <mat-cell *matCellDef="let element">
-                    {{ (element.user | async)?.emailAddress }}
-                </mat-cell>
+                <mat-cell *matCellDef="let element">#{{ element.orderNr }}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="date">
                 <mat-header-cell *matHeaderCellDef>Datum en tijd</mat-header-cell>
-                <mat-cell *matCellDef="let element">{{ element.order.datetime }}</mat-cell>
+                <mat-cell *matCellDef="let element">{{ element.datetime }}</mat-cell>
             </ng-container>
 
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

@@ -37,13 +37,6 @@ public class OrderResource {
         return service.getAll();
     }
 
-    @GET
-    @Path("/{orderNr}")
-    @JsonView(View.Public.class)
-    public User getUser(@PathParam("orderNr") int orderNr) {
-        return service.getUser(orderNr);
-    }
-
     @DELETE
     @Path("/{orderNr}")
     @RolesAllowed("ADMIN")
