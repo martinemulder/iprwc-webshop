@@ -20,6 +20,7 @@ public class UserDAO {
     private PreparedStatement getProducts;
     private Connection dbConnection;
     private List<User> users;
+    private PreparedStatement getUser;
     private PreparedStatement getUsers;
     private PreparedStatement addUser;
     private PreparedStatement editUser;
@@ -57,13 +58,34 @@ public class UserDAO {
     }
     
     public User get(int id) {
-        users = getAll();
+        User user = new User();
+//        users = getAll();
+//
+//        Optional<User> result = users.stream()
+//                .filter(user -> user.getId() == id)
+//                .findAny();
+//
+//        return result.isPresent() ? result.get() : null;
 
-        Optional<User> result = users.stream()
-                .filter(user -> user.getId() == id)
-                .findAny();
+        try {
+            getUser.setInt(1,id);
+            ResultSet resultSet = getUser.executeQuery();
 
-        return result.isPresent() ? result.get() : null;
+            while (resultSet.next()) {
+                user = new User(resultSet.getInt(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4),
+                        resultSet.getString(5),
+                        resultSet.getString(6),
+                        resultSet.getString(7)
+                );
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return user;
     }
     
     public User getByEmailAddress(String emailAddress) {
@@ -114,6 +136,7 @@ public class UserDAO {
 
     private void preparedStatements() {
         try {
+            getUser = dbConnection.prepareStatement("SELECT * FROM user WHERE id = ?");
             getUsers = dbConnection.prepareStatement("SELECT * from user;");
             addUser = dbConnection.prepareStatement("INSERT INTO user(fullname, postcode, streetnumber, email, password, role) VALUES (?,?,?,?,?,?)");
             editUser = dbConnection.prepareStatement("UPDATE user SET fullname = ?, postcode = ?, streetnumber = ?, email = ?, password = ? WHERE id = ?");

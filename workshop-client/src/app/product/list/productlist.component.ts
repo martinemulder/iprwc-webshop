@@ -73,11 +73,10 @@ export class ProductListComponent {
 
         if (this.product.artist != null && this.product.title != null && this.product.barcode != null &&
             this.product.year != null && this.product.price != null) {
-            console.log(this.product);
             this.productService.addProduct(this.product);
             this.actionAddProduct = false;
             this.refresh();
-            this.product = null;
+            this.product = new Product();
         }
 
     }

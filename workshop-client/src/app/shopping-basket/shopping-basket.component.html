@@ -4,45 +4,50 @@
 
         <div class="content-wrap">
 
-        <h2 *ngIf="shoppingBasketService.getProductCount() == 0">Geen producten in winkelmandje</h2>
+            <h2 *ngIf="shoppingBasketService.getProductCount() == 0">Geen producten in winkelmandje</h2>
 
-        <table *ngIf="shoppingBasketService.getProductCount() > 0">
+            <table *ngIf="shoppingBasketService.getProductCount() > 0">
 
-            <tr>
-                <th>Product</th>
-                <th>Barcode</th>
-                <th>Prijs</th>
-                <th>Aantal</th>
-                <th></th>
-            </tr>
-            <tr *ngFor="let product of products">
-                <td>
-                    <img src="'../../assets/images/products/{{ product.artist.replace(' ','-') | lowercase }}-{{ product.title.split(' ').join('-') | lowercase }}.jpg" />
-                    {{product.artist}} {{product.title}}</td>
-                <td>{{product.barcode}}</td>
-                <td>{{product.price}}</td>
-                <td>{{product.quantity}}</td>
-                <td>
-                    <button class="delete-button" (click)="delete(product)">
-                        <i class="material-icons">close</i>
-                    </button>
-                </td>
-            </tr>
+                <tr>
+                    <th>Product</th>
+                    <th>Barcode</th>
+                    <th>Prijs</th>
+                    <th>Aantal</th>
+                    <th></th>
+                </tr>
+                <tr *ngFor="let product of products">
+                    <td>
+                        <img src="'../../assets/images/products/{{ product.artist.replace(' ','-') | lowercase }}-{{ product.title.split(' ').join('-') | lowercase }}.jpg" />
+                        {{product.artist}} {{product.title}}</td>
+                    <td>{{product.barcode}}</td>
+                    <td>{{product.price}}</td>
+                    <td>{{product.quantity}}</td>
+                    <td class="delete-column">
+                        <button class="delete-button" (click)="delete(product)">
+                            <i class="material-icons">close</i>
+                        </button>
+                    </td>
+                </tr>
 
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Totaal: €{{shoppingBasketService.getTotalPrice()}}</td>
-            </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Totaal: €{{shoppingBasketService.getTotalPrice()}}</td>
+                </tr>
 
-        </table>
+            </table>
 
-        <div id="order-wrap">
-            <p *ngIf="!authenticated"><a routerLink="/registreer">Registreer</a> of <a routerLink="/login">login</a> om te kunnen bestellen</p>
-            <button [disabled]="!authenticated || shoppingBasketService.getProductCount() == 0" id="checkout-button" mat-raised-button (click)="order(shoppingBasketService.productsInBasket)">Bestellen</button>
-        </div>
+            <div id="order-wrap">
+                <p *ngIf="!authenticated"><a routerLink="/registreer">Registreer</a> of <a routerLink="/login">login</a> om te kunnen bestellen</p>
+                <button [disabled]="!authenticated || shoppingBasketService.getProductCount() == 0" id="checkout-button" mat-raised-button (click)="order(shoppingBasketService.productsInBasket)">Bestellen</button>
+            </div>
+
+            <p class="feedback">
+                {{this.orderService.feedbackString}}
+            </p>
+
         </div>
 
 </div>

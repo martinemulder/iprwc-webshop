@@ -101,8 +101,22 @@ button:disabled {
     border-radius: 100%;
     background: #972f36;
     background: #fc525f;
-    color: white;
+    background: #db5273;
+    background: transparent;
+    /*color: white;*/
     vertical-align: middle;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    font-size: 1.6em;
+}
+
+.delete-button, .feedback {
+    color: #fc525f;
+}
+
+.feedback {
+    margin-top: 20px;
 }
 
 input:focus {
@@ -155,8 +169,10 @@ button:hover {
     width: 50%;
     float: right;
     font-size: 1.1em;
-    padding: 13px!important;
-    margin-top: 40px;
+    height: 45px;
+    line-height: 45px;
+    margin-top: 40px!important;
+    padding: 0!important;
 }
 
 a, .link {
@@ -296,6 +312,26 @@ main {
 .module button[type="submit"] {
     margin-top: 20px;
 }
+
+
+/* Table */
+
+.mat-column-delete {
+    flex: 0.25!important;
+    text-align: right;
+}
+
+.mat-column-delete .delete-button {
+    padding: 0;
+    height: 30px;
+    width: 30px;
+}
+
+.mat-column-delete .delete-button .material-icons {
+    font-size: 1.2em;
+    line-height: 30px;
+}
+
 
 /* Content */
 

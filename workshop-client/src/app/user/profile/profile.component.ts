@@ -3,6 +3,9 @@ import { AuthorizationService } from "../../shared/authorization.service";
 import { Router } from "@angular/router";
 import {User} from "../user";
 import {UserService} from "../user.service";
+import {Order} from "../../order/order";
+import {OrderService} from "../../order/order.service";
+import {ListDataSource} from "../../order/list/orderlist.datasource";
 
 @Component({
     selector: 'app-profile',
@@ -17,8 +20,13 @@ export class ProfileComponent implements OnInit {
     public userName = '';
     public actionDeleteAccount: boolean = false;
     public actionChangeUserDate: boolean = false;
+    public orders: Order[];
 
-    constructor(private authService: AuthorizationService, private router: Router, private userService: UserService) {
+    public displayedColumns = ['orderNr', 'date', 'delete'];
+    public dataSource = null;
+
+    constructor(private authService: AuthorizationService, private router: Router,
+                private userService: UserService, public orderService: OrderService) {
 
         authService.authorized$.subscribe(
             authorized => {
@@ -30,6 +38,17 @@ export class ProfileComponent implements OnInit {
     }
 
     ngOnInit() {
+
+        this.getOrdersList();
+
+    }
+
+    private getOrdersList() {
+        this.orderService.getAll().subscribe(
+            orders => {
+                this.dataSource = new ListDataSource(orders);
+            }
+        );
     }
 
     private updateAuthentication() {
@@ -45,6 +64,19 @@ export class ProfileComponent implements OnInit {
         let user: User = this.authService.getAuthenticator();
         this.user = user;
         this.userName = user.fullName;
+    }
+
+    public cancelOrder(orderNr: number) {
+        this.orderService.deleteOrder(orderNr);
+        this.refreshOrders();
+    }
+
+    public refreshOrders() {
+        let thisClass = this;
+
+        setTimeout(function() {
+            thisClass.getOrdersList();
+        },200);
     }
 
     public editUser() {
@@ -70,6 +102,10 @@ export class ProfileComponent implements OnInit {
 
     public closeChangeUserData() {
         this.actionChangeUserDate = false;
+    }
+
+    public hasData() {
+        return this.dataSource !== null;
     }
 
 }

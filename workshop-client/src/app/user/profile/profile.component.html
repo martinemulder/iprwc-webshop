@@ -80,6 +80,40 @@
 
     <div class="content-wrap" >
 
+        <div class="order-list mat-elevation-z8" *ngIf="hasData()">
+
+            <mat-table #table [dataSource]="dataSource">
+
+                <ng-container matColumnDef="orderNr">
+                    <mat-header-cell *matHeaderCellDef>Bestelnummer</mat-header-cell>
+                    <mat-cell *matCellDef="let element">#{{ element.orderNr }}</mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="date">
+                    <mat-header-cell *matHeaderCellDef>Datum en tijd</mat-header-cell>
+                    <mat-cell *matCellDef="let element">{{ element.datetime }}</mat-cell>
+                </ng-container>
+
+                <ng-container id="delete" matColumnDef="delete">
+                    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        <button class="delete-button" (click)="cancelOrder(element.orderNr)">
+                            <i class="material-icons">close</i>
+                        </button>
+                    </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+            </mat-table>
+
+        </div>
+
+        <p class="feedback">
+            {{ orderService.feedbackString }}
+        </p>
+
     </div>
 
     <div *ngIf="actionDeleteAccount" id="delete-account" class="mat-elevation-z8 module">

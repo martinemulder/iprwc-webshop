@@ -11,6 +11,8 @@ import { User } from './user';
 @Injectable()
 export class UserService {
 
+    failedAction: boolean = false;
+
     constructor(private api: ApiService,
         private authService: AuthorizationService,
         private router: Router) {
@@ -51,9 +53,10 @@ export class UserService {
 
         this.api.put<void>('users', data).subscribe(
             data => {
+                this.failedAction = false;
             },
             error => {
-                alert('Het aanpassen van de gebruiker is mislukt');
+                this.failedAction = true;
             }
         );
     }
@@ -68,9 +71,10 @@ export class UserService {
                 this.authService.storeAuthorization(authenticator, remember);
                 this.authService.setRole(authenticator, remember);
                 this.goHome();
+                this.failedAction = false;
             },
             error => {
-                alert('Het inloggen is mislukt');
+                this.failedAction = true;
             }
         );
     }
@@ -79,8 +83,8 @@ export class UserService {
 
         this.api.delete<void>('users/'+user.emailAddress)
             .subscribe(
-                (response) => console.log('User successfully deleted.'),
-                (error) => console.log('User was not deleted')
+                (response) => "",
+                (error) => alert('User was not deleted')
             );
 
         if (self) {

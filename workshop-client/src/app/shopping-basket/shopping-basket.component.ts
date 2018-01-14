@@ -22,7 +22,8 @@ export class ShoppingBasketComponent implements OnInit {
     public products: Product[];
     public totalPrice: number;
 
-    constructor(private router: Router, public shoppingBasketService: ShoppingBasketService, public productService: ProductService, private authService: AuthorizationService, private orderService: OrderService) {
+    constructor(private router: Router, public shoppingBasketService: ShoppingBasketService,
+                private authService: AuthorizationService, public orderService: OrderService) {
 
         authService.authorized$.subscribe(
             authorized => {
@@ -82,12 +83,6 @@ export class ShoppingBasketComponent implements OnInit {
 
     public order(products: Product[]) {
         this.orderService.addOrder(products);
-        this.shoppingBasketService.empty();
-        this.goToOrderFeedback();
-    }
-
-    private goToOrderFeedback() {
-        this.router.navigate(['/bestelling-afgerond']);
     }
 
 }

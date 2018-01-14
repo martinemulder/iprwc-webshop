@@ -15,7 +15,7 @@ export class LoginComponent {
     user: User = new User();
     remember: boolean = false;
 
-    constructor(private userService: UserService) {
+    constructor(public userService: UserService) {
 
     }
 

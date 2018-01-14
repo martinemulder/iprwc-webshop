@@ -4,11 +4,16 @@ import { ApiService } from "../shared/api.service";
 import { Order } from "./order";
 import {Product} from "../product/product";
 import {User} from "../user/user";
+import {Router} from "@angular/router";
+import {ShoppingBasketService} from "../shopping-basket/shopping-basket.service";
 
 @Injectable()
 export class OrderService {
 
-    constructor(private api: ApiService) {
+    feedbackString: string = "";
+
+    constructor(private api: ApiService, private router: Router,
+                private shoppingBasketService: ShoppingBasketService) {
     }
 
     public getAll(): Observable<Order[]> {
@@ -18,13 +23,16 @@ export class OrderService {
     public deleteOrder(orderNr: number) {
         this.api.delete<void>('orders/'+orderNr)
             .subscribe(
-                (response) => console.log('Order successfully deleted.'),
-                (error) => console.log('Order was not removed')
+                (response) => this.feedbackString = "",
+                (error) => this.feedbackString = "Bestelling kon niet geannuleerd worden, " +
+                    "neem contact op met de klantenservice"
             );
     }
 
     public getUser(orderNr: number) {
+
         return this.api.get<User>('orders/'+orderNr);
+
     }
 
     public addOrder(products: Product[]) {
@@ -46,10 +54,11 @@ export class OrderService {
 
         this.api.post<void>('orders', data).subscribe(
             data => {
-                console.log(true);
+                this.shoppingBasketService.empty();
+                this.router.navigate(['/bestelling-afgerond']);
             },
             error => {
-                alert('Het bestellen is mislukt door een onverwachte fout, neem contact op met de klantenservice.');
+                this.feedbackString = "Het bestellen is mislukt, neem contact op met de klantenservice"
             }
         );
     }

@@ -35,13 +35,13 @@
             </mat-form-field>
 
             <mat-form-field class="full-width">
-                <input matInput type="password" name="password" placeholder="Wachtwoord" required [(ngModel)]="user.password" #password="ngModel" />
+                <input matInput type="password" name="password" placeholder="Wachtwoord" required [(ngModel)]="user.password" minlength="8" #password="ngModel" />
                 <mat-error [hidden]="password.valid">
-                    Dit veld is verplicht
+                    Dit veld is verplicht (minstens 8 karakters)
                 </mat-error>
             </mat-form-field>
 
-            <button id="register-button" mat-raised-button type="submit">Registreren</button>
+            <button id="register-button" class="big-button" mat-raised-button type="submit">Registreren</button>
 
         </form>
 

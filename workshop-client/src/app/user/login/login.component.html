@@ -23,14 +23,11 @@
             <br />
             <input type="checkbox" name="remember" [(ngModel)]="remember" /> Onthoud mij
 
+            <p class="feedback" *ngIf="userService.failedAction">Het inloggen is mislukt, probeer het nogmaals</p>
 
             <button id="login-button" class="big-button">Inloggen</button><br />
 
-
-            <!--<button id="login-button" mat-raised-button type="submit" class="mat-accent" [disabled]="!loginForm.valid">Inloggen</button>-->
-
         </form>
-
 
         Of <a routerLink="/registreer">registreer</a>
 

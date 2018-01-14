@@ -1,5 +1,6 @@
 package nl.hsleiden.persistence;
 
+import com.mysql.jdbc.ResultSetImpl;
 import nl.hsleiden.model.Order;
 import nl.hsleiden.model.Product;
 import nl.hsleiden.model.User;
@@ -24,8 +25,10 @@ public class OrderDAO {
     private List<Order> orders;
     private List<Product> products;
     private PreparedStatement getOrders;
+    private PreparedStatement getOrder;
     private PreparedStatement getOrderProducts;
     private PreparedStatement deleteOrder;
+    private PreparedStatement deleteOrderProducts;
     private PreparedStatement addOrder;
     private PreparedStatement addProductOrder;
 
@@ -39,16 +42,18 @@ public class OrderDAO {
     }
 
     public User getUser(int orderNr) {
-        orders = getAll();
-        Optional<Order> result = orders.stream()
-                .filter(order -> order.getOrderNr() == orderNr)
-                .findAny();
+//        orders = getAll();
+//        Optional<Order> result = orders.stream()
+//                .filter(order -> order.getOrderNr() == orderNr)
+//                .findAny();
+//
+//        Order order = result.isPresent() ? result.get() : null;
 
-        Order order = result.isPresent() ? result.get() : null;
+        int userId = get(orderNr).getUserId();
 
-        if (order != null){
-            System.out.println("User id is " + order.getUserId());
-            User user = this.userDAO.get(order.getUserId());
+        if (userId != 0){
+            System.out.println("User id is " + userId);
+            User user = this.userDAO.get(userId);
             System.out.println("User is " + user.getEmailAddress());
             return user;
         }
@@ -56,9 +61,10 @@ public class OrderDAO {
     }
     
     public List<Order> getAll() {
+        ResultSet resultSet;
         try {
             orders = new ArrayList<Order>();
-            ResultSet resultSet = getOrders.executeQuery();
+            resultSet = getOrders.executeQuery();
 
             while (resultSet.next()) {
                 Order order = new Order(
@@ -73,6 +79,24 @@ public class OrderDAO {
             return null;
         }
         return orders;
+    }
+
+    public Order get(int orderId) {
+        Order order = null;
+        try {
+            getOrder.setInt(1,orderId);
+            ResultSet resultSet = getOrder.executeQuery();
+
+            while (resultSet.next()) {
+                order = new Order(resultSet.getInt(1),
+                    resultSet.getInt(2),
+                            resultSet.getString(3));
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return order;
     }
 
     public List<Product> getOrderProducts(int orderId) {
@@ -98,14 +122,6 @@ public class OrderDAO {
             return null;
         }
         return products;
-    }
-
-    public Order get(int id) {
-        try {
-            return orders.get(id);
-        } catch(IndexOutOfBoundsException exception) {
-            return null;
-        }
     }
 
     public Boolean add(Product[] products, int userId) {
@@ -147,6 +163,8 @@ public class OrderDAO {
         try {
             deleteOrder.setInt(1,orderId);
             deleteOrder.executeUpdate();
+            deleteOrderProducts.setInt(1,orderId);
+            deleteOrderProducts.executeUpdate();
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -156,10 +174,11 @@ public class OrderDAO {
 
     private void preparedStatements() {
         try {
+            getOrder = dbConnection.prepareStatement("SELECT * FROM purchase_order WHERE id = ?;");
             getOrders = dbConnection.prepareStatement("SELECT * FROM purchase_order;");
             getOrderProducts = dbConnection.prepareStatement("SELECT p.*, pp.quantity FROM product p JOIN purchase_product pp ON pp.product_id = p.id WHERE order_id = ?");
-//            getOrders = dbConnection.prepareStatement("SELECT po.*, p.* FROM purchase_order po, purchase_product p WHERE p.order_id = po.id;");
             deleteOrder = dbConnection.prepareStatement("DELETE FROM purchase_order WHERE id = ?;");
+            deleteOrderProducts = dbConnection.prepareStatement("DELETE FROM purchase_product WHERE order_id = ?;");
             addOrder = dbConnection.prepareStatement("INSERT INTO purchase_order (user_id) VALUES (?);");
             addProductOrder = dbConnection.prepareStatement("INSERT INTO purchase_product (product_id, order_id, quantity) VALUES (?,?,?);");
         } catch (SQLException e) {

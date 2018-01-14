@@ -1,13 +1,10 @@
 
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ListDataSource } from './orderlist.datasource';
 import { OrderService } from "../order.service";
-import {Product} from "../../product/product";
-import {ProductService} from "../../product/product.service";
-import {Order} from "../order";
-import {User} from "../../user/user";
-import {forEach} from "@angular/router/src/utils/collection";
-import {UserService} from "../../user/user.service";
+import { Product } from "../../product/product";
+import { ProductService } from "../../product/product.service";
+import { User } from "../../user/user";
 
 @Component({
     selector: 'order-list',
@@ -17,7 +14,7 @@ import {UserService} from "../../user/user.service";
 
 export class OrderListComponent implements OnInit {
 
-    public displayedColumns = ['orderNr', 'user', 'date','delete'];
+    public displayedColumns = ['orderNr', 'user', 'date'];
     public dataSource = null;
     public orders = [];
     public user: User;
@@ -46,7 +43,6 @@ export class OrderListComponent implements OnInit {
                 });
                 this.dataSource = new ListDataSource(this.orders);
                 console.log(this.orders);
-                // this.orders = orders.map(order => order);
             }
         );
 
@@ -62,13 +58,6 @@ export class OrderListComponent implements OnInit {
     }
 
     public getUser(orderNr: number) {
-        // let newUser: User = new User();
-        // this.orderService.getUser(orderNr).subscribe(
-        //     user => {
-        //         newUser = user;
-        //     }
-        // );
-        // return newUser;
         return this.orderService.getUser(orderNr);
     }
 

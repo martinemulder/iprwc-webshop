@@ -18,6 +18,7 @@ tr {
 #delete-account-button {
     background: #b8566d;
     color: white!important;
+    margin-right: 0;
 }
 
 #delete-account button:first-of-type {
@@ -30,4 +31,8 @@ tr {
     top: 10px;
     right: 10px;
     box-shadow: none;
+}
+
+.order-list {
+    margin-top: 20px;
 }

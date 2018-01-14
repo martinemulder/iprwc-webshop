@@ -108,7 +108,7 @@ public class ProductDAO {
 
     private void preparedStatements() {
         try {
-            getProducts = dbConnection.prepareStatement("SELECT * from product;");
+            getProducts = dbConnection.prepareStatement("SELECT * from product ORDER BY title");
             deleteProduct = dbConnection.prepareStatement("DELETE FROM product WHERE id = ?");
             editProduct = dbConnection.prepareStatement("UPDATE product SET artist = ?, title = ?, year = ?, price = ? WHERE id = ?");
             addProduct = dbConnection.prepareStatement("INSERT INTO product (barcode, artist, title, year, price) VALUES (?,?,?,?,?)");

@@ -41,23 +41,20 @@ public class OrderResource {
     @Path("/{orderNr}")
     @JsonView(View.Public.class)
     public User getUser(@PathParam("orderNr") int orderNr) {
-//        System.out.println("System: " + orderNr);
-//        System.out.println(getUser(orderNr));
         return service.getUser(orderNr);
     }
 
     @DELETE
-    @Path("/{id}")
+    @Path("/{orderNr}")
     @RolesAllowed("ADMIN")
-    public void delete(@PathParam("id") int id) {
-        service.delete(id);
+    public void delete(@PathParam("orderNr") int orderNr, @Auth User authenticator) {
+        service.delete(orderNr, authenticator);
     }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @JsonView(View.Public.class)
     public void create(Product[] products, @Auth User authenticator) {
-        System.out.println(products);
         service.add(products, authenticator.getId());
     }
 

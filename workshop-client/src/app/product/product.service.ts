@@ -20,7 +20,6 @@ export class ProductService {
     }
 
     public get(id: number): Observable<Product[]> {
-        console.log(this.api.get<Product[]>('products/'+id));
         return this.api.get<Product[]>('products/'+id);
     }
 
@@ -45,8 +44,6 @@ export class ProductService {
             price: product.price,
         };
 
-        console.log(data);
-
         this.api.put<void>('products', data).subscribe(
             data => {
                 alert('Product aanpassen gelukt');
@@ -68,7 +65,7 @@ export class ProductService {
 
         this.api.post<void>('products', data).subscribe(
             data => {
-                console.log(true);
+
             },
             error => {
                 alert('Product toevoegen mislukt.');

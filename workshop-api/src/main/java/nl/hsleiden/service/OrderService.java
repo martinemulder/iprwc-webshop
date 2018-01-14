@@ -29,32 +29,14 @@ public class OrderService extends BaseService<User> {
         User user = dao.getUser(orderNr);
         return user;
     }
+//
+    public void delete(int orderNr, User authenticator) {
+        // Controleren of deze bestelling bestaat
+        Order order = dao.get(orderNr);
 
-//    public Product get(int id) {
-////        return requireResult(dao.get(id));
-//    }
-    
-//    public void add(Product product) {
-//        dao.add(product);
-//    }
-//
-//    public void update(User authenticator, int id, Product product) {
-//        // Check if this product exists
-////        Product oldProduct = get(id);
-//
-//        if (authenticator.hasRole("ADMIN")) {
-//            // Check if user has role admin
-//            dao.update(id, product);
-//
-//        }
-//
-//    }
-//
-    public void delete(int id) {
-        // Controleren of deze gebruiker wel bestaat
-//        Order order = get(id);
-
-        dao.delete(id);
+        if (order != null) {
+            dao.delete(orderNr);
+        }
     }
 
     public void add(Product[] products, int userId) {
