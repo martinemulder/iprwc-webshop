@@ -93,3 +93,4 @@
 DropwizardAPI/target/
 *.class
 DropwizardAPI/target/classes/banner\.txt
+workshop-api/src/main/java/META-INF/MANIFEST.MF
