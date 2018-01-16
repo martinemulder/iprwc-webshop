@@ -19,10 +19,9 @@ http://iprwc.martinemulder.com/webshop-admin
     GET     /api/users/{id} (nl.hsleiden.resource.UserResource)
 
 Account docent:
-docentadmin@gmail.com ww: Docent180
-docent@gmail.com ww: Docent280
+docent@gmail.com ww: Docent180
+docentadmin@gmail.com ww: DocentAdmin280
 
 Account student:
-studentadmin@gmail.com ww: Student180
-student@gmail.com ww: Student280
-
+student@gmail.com ww: Student180
+studentadmin@gmail.com ww: StudentAdmin280
