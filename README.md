@@ -5,6 +5,7 @@ http://iprwc.martinemulder.com/webshop-admin
     GET     /api/ (nl.hsleiden.resource.DefaultResource)
     GET     /api/orders (nl.hsleiden.resource.OrderResource)
     POST    /api/orders (nl.hsleiden.resource.OrderResource)
+    GET     /api/orders/me (nl.hsleiden.resource.OrderResource)
     DELETE  /api/orders/{orderNr} (nl.hsleiden.resource.OrderResource)
     GET     /api/products (nl.hsleiden.resource.ProductResource)
     POST    /api/products (nl.hsleiden.resource.ProductResource)
