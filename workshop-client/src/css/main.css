@@ -338,6 +338,7 @@ main {
 .content {
     position: relative;
     width: 1200px;
+    max-width: 100%;
     margin: 0 auto;
     height: 100%;
 }
@@ -358,4 +359,35 @@ main {
     content: " ";
     clear: both;
     height: 0;
+}
+
+
+@media all and (max-width: 768px) {
+
+    main {
+        padding: 30px;
+    }
+
+    h2 {
+        font-size: 1.3em;
+    }
+
+    .content-wrap {
+        margin-left: 0;
+        width: 100%;
+    }
+
+}
+
+@media all and (max-width: 520px) {
+
+    h2 {
+        font-size: 1.2em;
+    }
+
+    .content-wrap {
+        margin-left: 0;
+        width: 100%;
+    }
+
 }

@@ -20,6 +20,10 @@ export class OrderService {
         return this.api.get<Order[]>('orders');
     }
 
+    public getMyOrders(): Observable<Order[]> {
+        return this.api.get<Order[]>('orders/me');
+    }
+
     public deleteOrder(orderNr: number) {
         this.api.delete<void>('orders/'+orderNr)
             .subscribe(

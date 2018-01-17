@@ -32,9 +32,15 @@ public class OrderResource {
     }
     
     @GET
-    @JsonView(View.Public.class)
+    @RolesAllowed("ADMIN")
     public Collection<Order> retrieveAll() {
         return service.getAll();
+    }
+
+    @GET
+    @Path("/me")
+    public Collection<Order> myOrders(@Auth User authenticator) {
+        return service.getMyOrders(authenticator);
     }
 
     @DELETE
@@ -46,7 +52,6 @@ public class OrderResource {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    @JsonView(View.Public.class)
     public void create(Product[] products, @Auth User authenticator) {
         service.add(products, authenticator.getId());
     }

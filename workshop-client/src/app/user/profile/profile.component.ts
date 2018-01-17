@@ -44,7 +44,7 @@ export class ProfileComponent implements OnInit {
     }
 
     private getOrdersList() {
-        this.orderService.getAll().subscribe(
+        this.orderService.getMyOrders().subscribe(
             orders => {
                 this.dataSource = new ListDataSource(orders);
             }

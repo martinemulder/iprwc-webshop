@@ -80,6 +80,8 @@
 
     <div class="content-wrap" >
 
+        <p *ngIf="!hasData()">Er zijn nog geen bestellingen</p>
+
         <div class="order-list mat-elevation-z8" *ngIf="hasData()">
 
             <mat-table #table [dataSource]="dataSource">

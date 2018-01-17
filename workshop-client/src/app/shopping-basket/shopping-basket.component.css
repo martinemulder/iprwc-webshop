@@ -40,11 +40,13 @@ tr:last-of-type td {
     font-size: 1.1em;
 }
 
+td:nth-child(2), th:nth-child(2) {
+    text-align: left;
+}
+
 #checkout-button {
     width: 50%;
-    float: right;
     font-size: 1.2em;
-    padding: 15px 80px;
     font-family: montserrat-regular!important;
 }
 
@@ -67,3 +69,19 @@ tr:last-of-type td {
     margin-right: 30px;
 }
 
+.delete-column {
+    width: 100px;
+}
+
+.delete-button {
+    padding-right:20px;
+}
+
+@media all and (max-width: 768px) {
+
+    .delete-column {
+        width: 10px;
+        text-align: right;
+    }
+
+}

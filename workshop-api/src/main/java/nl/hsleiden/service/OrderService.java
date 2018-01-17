@@ -25,6 +25,10 @@ public class OrderService extends BaseService<User> {
         return dao.getAll();
     }
 
+    public Collection<Order> getMyOrders(User authenticator) {
+        return dao.getMyOrders(authenticator);
+    }
+
     public void delete(int orderNr, User authenticator) {
         // Controleren of deze bestelling bestaat
         Order order = dao.get(orderNr);

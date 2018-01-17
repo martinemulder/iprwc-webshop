@@ -1,6 +1,5 @@
 header {
-    padding: 15px;
-    background: #252525;
+    padding: 15px 40px;
     background: #b8566d;
     box-shadow: 0 3px 15px -3px rgba(0,0,0,.1);
     height: 100px;
@@ -12,7 +11,7 @@ header {
 }
 
 #logo {
-    padding: 6px;
+    padding: 6px 6px 6px 0;
 }
 
 #logo h1 {
@@ -43,10 +42,6 @@ header {
     height: 100%;
 }
 
-.welcome {
-    /*margin-right: 10px;*/
-}
-
 header button {
     margin-left: 20px;
 }
@@ -54,6 +49,7 @@ header button {
 #logout-button, #login-button {
     background: #3a1c40;
     color: white!important;
+    padding: 3.5px 15px;
 }
 
 #profiel-button {
@@ -77,3 +73,76 @@ header button {
     right: 6px;
 }
 
+@media all and (max-width: 768px) {
+
+    .welcome {
+        display: none;
+    }
+
+}
+
+@media all and (max-width: 520px) {
+
+    header {
+        padding: 15px 20px;
+    }
+
+    #logo {
+        width: 120px;
+    }
+
+    #logo img {
+        width: 100%;
+        height: auto;
+    }
+
+    #shopping-cart-button {
+        margin-left: 20px;
+    }
+
+}
+
+@media all and (max-width: 440px) {
+
+    header {
+        height: 80px;
+    }
+
+    #profiel-button {
+        margin-left: 0!important;
+    }
+
+    #logout-button, #login-button {
+        font-size: 0.9em;
+        margin-left: 10px;
+        padding: 1px 4px;
+    }
+
+    #shopping-cart-button {
+        padding: 5px;
+        margin-left: 10px;
+        width: 50px;
+    }
+
+    #logo {
+        width: 100px;
+    }
+
+    header button {
+        margin-left: 10px;
+    }
+
+}
+
+@media all and (max-width: 360px) {
+
+    header {
+        padding: 15px;
+    }
+
+    #logo {
+        width: 90px;
+        padding-top: 10px;
+    }
+
+}

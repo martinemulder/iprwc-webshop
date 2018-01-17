@@ -29,7 +29,6 @@ public class Database {
 //            String url ="jdbc:mysql://localhost/webshop";
 
             String url ="jdbc:mysql://localhost:3306/admin_iprwc";
-//            dbConnection = DriverManager.getConnection(url, "bramvoc263_see","m.n.mulder");
 //            dbConnection = DriverManager.getConnection(url, "root","");
             dbConnection = DriverManager.getConnection(url, "mnmulder","hGEUQG37R53");
 

@@ -25,6 +25,7 @@ public class OrderDAO {
     private List<Order> orders;
     private List<Product> products;
     private PreparedStatement getOrders;
+    private PreparedStatement getMyOrders;
     private PreparedStatement getOrder;
     private PreparedStatement getOrderProducts;
     private PreparedStatement deleteOrder;
@@ -39,6 +40,30 @@ public class OrderDAO {
         dbConnection = database.getDbConnection();
         preparedStatements();
 
+    }
+
+    public List<Order> getMyOrders(User authenticator) {
+
+        User user = userDAO.getByEmailAddress(authenticator.getEmailAddress());
+        ResultSet resultSet;
+        try {
+            orders = new ArrayList<Order>();
+            getMyOrders.setInt(1, user.getId());
+            resultSet = getMyOrders.executeQuery();
+
+            while (resultSet.next()) {
+                Order order = new Order(
+                        resultSet.getInt("id"),
+                        resultSet.getInt("user_id"),
+                        resultSet.getString("date_time")
+                );
+                orders.add(order);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return orders;
     }
     
     public List<Order> getAll() {
@@ -157,6 +182,7 @@ public class OrderDAO {
         try {
             getOrder = dbConnection.prepareStatement("SELECT * FROM purchase_order WHERE id = ?;");
             getOrders = dbConnection.prepareStatement("SELECT * FROM purchase_order;");
+            getMyOrders = dbConnection.prepareStatement("SELECT * FROM purchase_order WHERE user_id = ?;");
             getOrderProducts = dbConnection.prepareStatement("SELECT p.*, pp.quantity FROM product p JOIN purchase_product pp ON pp.product_id = p.id WHERE order_id = ?");
             deleteOrder = dbConnection.prepareStatement("DELETE FROM purchase_order WHERE id = ?;");
             deleteOrderProducts = dbConnection.prepareStatement("DELETE FROM purchase_product WHERE order_id = ?;");
