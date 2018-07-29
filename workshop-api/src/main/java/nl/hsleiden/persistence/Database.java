@@ -1,6 +1,5 @@
 package nl.hsleiden.persistence;
 
-import java.io.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -25,13 +24,8 @@ public class Database {
         }
 
         try {
-//            String url ="jdbc:mysql://bramvoc263.263.axc.nl:3306/bramvoc263_see";
-//            String url ="jdbc:mysql://localhost/webshop";
-
-            String url ="jdbc:mysql://localhost:3306/admin_iprwc";
-//            dbConnection = DriverManager.getConnection(url, "root","");
-            dbConnection = DriverManager.getConnection(url, "mnmulder","hGEUQG37R53");
-
+            String url ="jdbc:mysql://localhost/webshop";
+            dbConnection = DriverManager.getConnection(url, "root","");
 
             if (dbConnection == null) {
                 System.out.println("Connection lost");

@@ -27,6 +27,8 @@
 
         <button id="change-profile-button" (click)="openChangeUserData()" mat-raised-button>Gegevens wijzigen</button>
 
+        <button id="admin-area-button" *ngIf="isAdmin()" routerLink="/webshop-admin" mat-raised-button>Admin area</button>
+
     </div>
 
     <div *ngIf="actionChangeUserDate" id="change-user-data" class="mat-elevation-z8 module">

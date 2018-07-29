@@ -9,7 +9,7 @@ tr {
     border-spacing: 10px;
 }
 
-#change-profile-button, #change-password-button, #delete-account-button {
+#change-profile-button, #delete-account-button, #admin-area-button {
     float: right;
     margin-right: 20px;
     margin-top: 60px;

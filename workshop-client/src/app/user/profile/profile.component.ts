@@ -51,6 +51,14 @@ export class ProfileComponent implements OnInit {
         );
     }
 
+    public isAdmin() {
+        if (this.user.role == "ADMIN") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     private updateAuthentication() {
 
         this.authenticated = this.authService.hasAuthorization();
